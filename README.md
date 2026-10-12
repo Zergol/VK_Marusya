@@ -1,89 +1,89 @@
-# VK Маруся — онлайн-киносервис
+# VK Marusya — Online Cinema Service
 
-Бета-версия стримингового сервиса от ВК «Маруся». Пользователи могут искать фильмы, просматривать их по жанрам и категориям, смотреть трейлеры и добавлять фильмы в избранное.
+A beta version of VK's streaming service "Marusya". Users can search for movies, browse them by genres and categories, watch trailers, and add movies to their favorites.
 
-## 🚀 Технологии
+## 🚀 Technologies
 
 - **React 18** + **TypeScript**
-- **Vite** — сборка
-- **Redux Toolkit** + **React Redux** — управление состоянием
-- **React Router v6** — маршрутизация
-- **Axios / Fetch API** — работа с бэкендом
-- **Sass (SCSS)** — стили по макетам Figma
+- **Vite** — build tool
+- **Redux Toolkit** + **React Redux** — state management
+- **React Router v6** — routing
+- **Axios / Fetch API** — backend communication
+- **Sass (SCSS)** — styling based on Figma designs
 
-## ✨ Функциональность
+## ✨ Features
 
-### Главная страница
-- Случайный фильм дня с кнопками: «Трейлер», «О фильме», добавление в избранное, получение нового случайного фильма.
-- Топ-10 фильмов по рейтингу IMDb.
+### Home Page
+- Random daily movie with buttons: "Trailer", "About", add to favorites, and get a new random movie.
+- Top-10 movies by IMDb rating.
 
-### Страницы
-- **Жанры** — список жанров карточками.
-- **Фильмы жанра** — фильтры по жанру, подгрузка по 10 фильмов кнопкой «Показать ещё».
-- **Страница фильма** — обложка, полное описание (язык, бюджет, выручка, режиссёр, продакшен, награды), трейлер, избранное.
-- **Аккаунт** — личные данные и избранные фильмы (доступен после авторизации), вкладки «Избранные фильмы» и «Настройка аккаунта».
+### Pages
+- **Genres** — list of genres displayed as cards.
+- **Genre Movies** — filters by genre, load 10 more movies with the "Show More" button.
+- **Movie Page** — cover image, full description (language, budget, revenue, director, production, awards), trailer, favorites.
+- **Account** — personal data and favorite movies (available after login), with tabs for "Favorite Movies" and "Account Settings".
 
-### Авторизация
-- Регистрация и вход через модальное окно (валидация полей, подсветка ошибок).
-- Сессия хранится в cookie; данные пользователя дополнительно сохраняются в `localStorage`, поэтому авторизация не сбрасывается при перезагрузке страницы.
-- После регистрации показывается экран «Регистрация завершена».
+### Authentication
+- Registration and login via modal window (field validation, error highlighting).
+- Session stored in cookies; user data is additionally saved in `localStorage`, so authentication is preserved on page reload.
+- After registration, a "Registration Complete" screen is displayed.
 
-### Поиск
-- Живой поиск фильмов по названию в шапке сайта с выпадающим списком результатов.
+### Search
+- Live search for movies by title in the site header with a dropdown list of results.
 
-### Прочее
-- Анимации переходов между страницами, модальных окон и карточек.
-- Уведомления (toast) об ошибках и действиях.
-- Прелоадер и лоадеры для асинхронных операций.
-- Адаптивная вёрстка 375px / 1440px по макетам.
+### Additional
+- Transition animations between pages, modals, and cards.
+- Toast notifications for errors and actions.
+- Preloaders and loaders for asynchronous operations.
+- Responsive design for 375px / 1440px based on Figma layouts.
 
-## 🛠 Установка и запуск
+## 🛠 Installation and Setup
 
 ```bash
-# Установка зависимостей
+# Install dependencies
 npm install
 
-# Запуск в режиме разработки
+# Start development server
 npm run dev
 
-# Сборка production-версии
+# Build production version
 npm run build
 
-# Локальный предпросмотр собранного проекта
+# Preview the built project locally
 npm run preview
 ```
 
-Приложение будет доступно по адресу http://localhost:5173/ (или следующему свободному порту).
+The application will be available at http://localhost:5173/ (or the next available port).
 
-## 📁 Структура проекта
+## 📁 Project Structure
 
 ```
 src/
 ├── components/
-│   ├── molecules/       # Карточки, модальные окна, лоадеры
-│   └── organisms/       # Header, Footer, Layout, анимации переходов
-├── pages/               # Страницы приложения
-├── services/            # Работа с API
-├── store/               # Redux-слайсы (auth, movie, genre, favorites, toast)
-├── styles/              # SCSS-стили (base, pages)
-├── types/               # TypeScript-типы
-└── utils/               # Утилиты (форматирование, перевод жанров)
+│   ├── molecules/       # Cards, modals, loaders
+│   └── organisms/       # Header, Footer, Layout, transition animations
+├── pages/               # Application pages
+├── services/            # API integration
+├── store/               # Redux slices (auth, movie, genre, favorites, toast)
+├── styles/              # SCSS styles (base, pages)
+├── types/               # TypeScript types
+└── utils/               # Utilities (formatting, genre translation)
 ```
 
 ## 🔌 API
 
-Бэкенд: [https://cinemaguide.skillbox.cc](https://cinemaguide.skillbox.cc) (документация — `/docs`).
+Backend: [https://cinemaguide.skillbox.cc](https://cinemaguide.skillbox.cc) (documentation at `/docs`).
 
-Особенности интеграции:
-- Авторизация через сессии (cookie), все запросы отправляются с `credentials: include`.
-- Эндпоинты `POST /user` (регистрация), `POST /auth/login` и `POST /favorites` принимают данные в формате **`application/x-www-form-urlencoded`**.
-- После логина профиль (имя, фамилия, email) запрашивается отдельно через `GET /profile`.
-- Пагинация списка фильмов задаётся параметрами `page` и `count`.
+Integration details:
+- Authentication via session cookies; all requests are sent with `credentials: include`.
+- Endpoints `POST /user` (registration), `POST /auth/login`, and `POST /favorites` accept data in **`application/x-www-form-urlencoded`** format.
+- After login, the profile (first name, last name, email) is fetched separately via `GET /profile`.
+- Movie list pagination is controlled by `page` and `count` parameters.
 
-## 📜 Скрипты
+## 📜 Scripts
 
-| Команда          | Описание                          |
-| ---------------- | --------------------------------- |
-| `npm run dev`    | Запуск dev-сервера                |
-| `npm run build`  | Проверка типов + production-сборка|
-| `npm run preview`| Предпросмотр production-сборки    |
+| Command          | Description                         |
+| ---------------- | ----------------------------------- |
+| `npm run dev`    | Start the dev server                |
+| `npm run build`  | Type checking + production build    |
+| `npm run preview`| Preview the production build        |
